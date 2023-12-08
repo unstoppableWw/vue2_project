@@ -1,20 +1,31 @@
 <template>
   <div id="app">
-    <ImageLoader/>
+    <div class="test-container">
+      <Contact />
+    </div>
   </div>
 </template>
 
 <script>
-import ImageLoader from './components/ImageLoader'
+import Contact from './components/Contact'
 export default {
   name: 'App',
   components: {
-    ImageLoader,
+    Contact,
   },
 
 }
 </script>
 
-<style>
-
+<style scoped>
+.test-container{
+  
+  width: 400px;
+  height: 400px;
+  border: 2px solid red ;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-top: 200px;
+  background: #000;
+}
 </style>
