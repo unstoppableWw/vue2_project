@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <div class="test-container">
-      <Contact />
+        <SiteAside/>
     </div>
   </div>
 </template>
 
 <script>
-import Contact from './components/Contact'
+import SiteAside from './components/SiteAside'
 export default {
   name: 'App',
   components: {
-    Contact,
+    SiteAside,
   },
 
 }
