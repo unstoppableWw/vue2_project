@@ -41,10 +41,11 @@ export default {
 .footer {
   text-align: center;
   font-size: 14px;
+  margin-top: 30px;
 }
 .title {
   margin-top: 20px;
-  font-size: 1em;
+  font-size: 1.4em;
   color: #fff;
   text-align: center;
 }

@@ -63,30 +63,26 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped lang="less">
 @import "~@/style/var.less";
-
 .menu-container {
   color: @gray;
   margin: 24px 0;
-
-  li {
-    padding: 0 50px;
-    height: 45px;
-    line-height: 45px;
-    list-style: none;
+  a {
     &.selected {
       background: darken(@words, 3%);
     }
-    a {
-      display: flex;
-      font-size: 20px;
-      .icon {
-        width: 30px;
-      }
-      &:hover {
+    padding: 0 50px;
+    display: block;
+    display: flex;
+    align-items: center;
+    height: 45px;
+    .icon {
+      width: 24px;
+    }
+    &:hover {
       color: #fff;
     }
-    }
   }
-}</style>
+}
+</style>
