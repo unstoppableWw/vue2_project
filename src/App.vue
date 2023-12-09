@@ -21,7 +21,7 @@ export default {
 .test-container{
   
   width: 400px;
-  height: 400px;
+  
   border: 2px solid red ;
   margin: 0 auto;
   overflow: hidden;

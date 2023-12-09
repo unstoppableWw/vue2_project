@@ -33,10 +33,8 @@ export default {
 
 <style lang="less" scoped>
 @import '//at.alicdn.com/t/c/font_4363356_8b4gcd0zqiu.css';
-.icon-container{
-  display: flex;
-  justify-content: center;
-  margin: 30px auto;
-  width: 580px;
+.iconfont {
+  color: inherit;
+  font-size: inherit;
 }
 </style>
