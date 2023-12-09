@@ -74,6 +74,7 @@ export default {
     padding: 0 50px;
     height: 45px;
     line-height: 45px;
+    list-style: none;
     &.selected {
       background: darken(@words, 3%);
     }
@@ -81,7 +82,7 @@ export default {
       display: flex;
       font-size: 20px;
       .icon {
-        width: 24px;
+        width: 30px;
       }
       &:hover {
       color: #fff;

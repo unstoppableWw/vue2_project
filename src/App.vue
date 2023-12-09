@@ -20,12 +20,10 @@ export default {
 <style scoped>
 .test-container{
   
-  width: 400px;
-  
+  width: 300px;
+  height: 600px;
   border: 2px solid red ;
   margin: 0 auto;
-  overflow: hidden;
-  padding-top: 200px;
-  background: #000;
+
 }
 </style>
