@@ -15,6 +15,9 @@ const classMap = {
   about:"icon-guanyu",
   chat:"icon-liuyanban-05",
   empty:"icon-wenjianjiashanchu",
+  info:"icon-info",
+  success:"icon-success",
+  error:"icon-cuowu",
 }
 export default {
   props:{
@@ -32,7 +35,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '//at.alicdn.com/t/c/font_4363356_8b4gcd0zqiu.css';
+@import '//at.alicdn.com/t/c/font_4363356_5ukankvyeex.css';
 .iconfont {
   color: inherit;
   font-size: inherit;
