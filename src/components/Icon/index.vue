@@ -18,6 +18,8 @@ const classMap = {
   info:"icon-info",
   success:"icon-success",
   error:"icon-cuowu",
+  arrowdown:"icon-xiangxiajiantou",
+  arrowup:"icon-xiangshangjiantou",
 }
 export default {
   props:{
@@ -35,7 +37,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '//at.alicdn.com/t/c/font_4363356_5ukankvyeex.css';
+@import '//at.alicdn.com/t/c/font_4363356_0p9h3r9xd3w.css';
 .iconfont {
   color: inherit;
   font-size: inherit;
