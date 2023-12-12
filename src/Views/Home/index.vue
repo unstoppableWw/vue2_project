@@ -1,22 +1,25 @@
 <template>
-  <div class="home-container" ref="container">
+  <div class="home-container" ref="container" @wheel="handleWheel">
     <ul
       class="carousel-container"
-      :style="{marginTop}"
+      :style="{
+        marginTop,
+      }"
+      @transitionend="handleTransitionEnd"
     >
-      <li v-for="item in banners" :key="item.id">
-        <Carouselitem />
+      <li v-for="(item) in banners" :key="item.id">
+        <CarouselItem :carousel="item" />
       </li>
     </ul>
     <div v-show="index >= 1" @click="switchTo(index - 1)" class="icon icon-up">
-      <Icon type="arrowup" />
+      <Icon type="arrowUp" />
     </div>
     <div
       v-show="index < banners.length - 1"
       @click="switchTo(index + 1)"
       class="icon icon-down"
     >
-      <Icon type="arrowdown" />
+      <Icon type="arrowDown" />
     </div>
     <ul class="indicator">
       <li
@@ -30,20 +33,107 @@
     </ul>
   </div>
 </template>
+
+<style lang="less" scoped>
+@import "~@/style/mixin.less";
+@import "~@/style/var.less";
+.home-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+  }
+}
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  transition: 500ms;
+  li {
+    width: 100%;
+    height: 100%;
+  }
+}
+.icon {
+  .self-center();
+  font-size: 30px;
+  @gap: 25px;
+  color: @gray;
+  cursor: pointer;
+  transform: translateX(-50%);
+  &.icon-up {
+    top: @gap;
+    animation: jump-up 2s infinite;
+  }
+  &.icon-down {
+    top: auto;
+    bottom: @gap;
+    animation: jump-down 2s infinite;
+  }
+  @jump: 5px;
+  @keyframes jump-up {
+    0% {
+      transform: translate(-50%, @jump);
+    }
+    50% {
+      transform: translate(-50%, -@jump);
+    }
+    100% {
+      transform: translate(-50%, @jump);
+    }
+  }
+  @keyframes jump-down {
+    0% {
+      transform: translate(-50%, -@jump);
+    }
+    50% {
+      transform: translate(-50%, @jump);
+    }
+    100% {
+      transform: translate(-50%, -@jump);
+    }
+  }
+}
+.indicator {
+  .self-center();
+  transform: translateY(-50%);
+  left: auto;
+
+  right: 20px;
+  li {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: @words;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    &.active {
+      background: #fff;
+    }
+  }
+}
+</style>
+
 <script>
 import { getBanners } from "@/api/banner";
-import Carouselitem from "./Carouselitem";
+import CarouselItem from "./Carouselitem";
 import Icon from "@/components/Icon";
 export default {
   components: {
-    Carouselitem,
+    CarouselItem,
     Icon,
   },
   data() {
     return {
       banners: [],
-      index: 2, // 当前显示的是第几张轮播图
+      index: 0, // 当前显示的是第几张轮播图
       containerHeight: 0, // 整个容器的高度
+      switching: false, // 是否正在切换中
     };
   },
   async created() {
@@ -51,6 +141,10 @@ export default {
   },
   mounted() {
     this.containerHeight = this.$refs.container.clientHeight;
+    window.addEventListener("resize", this.handleResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
   },
   computed: {
     marginTop() {
@@ -62,99 +156,26 @@ export default {
     switchTo(i) {
       this.index = i;
     },
+    handleWheel(e) {
+      if (this.switching) {
+        return;
+      }
+      if (e.deltaY < -5 && this.index > 0) {
+        // 往上滚动
+        this.switching = true;
+        this.index--;
+      } else if (e.deltaY > 5 && this.index < this.banners.length - 1) {
+        // 往下滚动
+        this.switching = true;
+        this.index++;
+      }
+    },
+    handleTransitionEnd() {
+      this.switching = false;
+    },
+    handleResize() {
+      this.containerHeight = this.$refs.container.clientHeight;
+    },
   },
 };
 </script>
-
-<style scoped lang="less">
-@import "~@/style/mixin.less";
-@import "~@/style/var.less";
-
-.home-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.carousel-container {
-  width: 100%;
-  height: 100%;
-  transition: 500ms;
-  
-  li {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.indicator {
-
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  position: absolute;
-  list-style: none;
-
-  li {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #333;
-    cursor: pointer;
-    margin-bottom: 10px;
-    border: 1px solid #fff;
-    transition: 0.5s;
-
-    &.active {
-      background: #fff;
-    }
-  }
-}
-
-.icon {
-  .self-center();
-  font-size: 35px;
-  color: @gray;
-  font-weight: 900;
-  transform: translateX(-50%);
-
-  &.icon-up {
-    top: 25px;
-    animation: jump-up 2s infinite;
-  }
-
-  &.icon-down {
-    top: auto;
-    bottom: 25px;
-    animation: jump-down 2s infinite;
-  }
-
-  @keyframes jump-up {
-    0% {
-      transform: translate(-50%, 10px);
-    }
-
-    50% {
-      transform: translate(-50%, -10px);
-    }
-
-    100% {
-      transform: translate(-50%, 10px);
-    }
-  }
-
-  @keyframes jump-down {
-    0% {
-      transform: translate(-50%, -10px);
-    }
-
-    50% {
-      transform: translate(-50%, 10px);
-    }
-
-    100% {
-      transform: translate(-50%, -10px);
-    }
-  }
-}</style>
