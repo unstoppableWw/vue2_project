@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container" ref="container" @wheel="handleWheel">
+  <div class="home-container" ref="container" @wheel="handleWheel" v-loading="isLoading">
     <ul
       class="carousel-container"
       :style="{
@@ -134,10 +134,12 @@ export default {
       index: 0, // 当前显示的是第几张轮播图
       containerHeight: 0, // 整个容器的高度
       switching: false, // 是否正在切换中
+      isLoading: true, //是否正在加载中
     };
   },
   async created() {
     this.banners = await getBanners();
+    this.isLoading=false;
   },
   mounted() {
     this.containerHeight = this.$refs.container.clientHeight;

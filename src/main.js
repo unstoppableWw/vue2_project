@@ -8,6 +8,10 @@ import "./mock";
 
 Vue.prototype.$showMessage = showMessage;
 Vue.use(VueRouter);
+
+import vLoading from "./directives/loading";
+Vue.directive("loading", vLoading);
+
 new Vue({
   router,
   render: (h) => h(App),
