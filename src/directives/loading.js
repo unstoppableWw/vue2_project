@@ -16,7 +16,7 @@ function createLoadingImg() {
 // 导出指令的配置对象
 export default function(el, binding) {
   // 根据 binding.value 的值，决定创建或删除img元素
-  console.log(binding);
+
   const curImg = getLoadingImage(el);
   if (binding.value) {
     if (!curImg) {
@@ -25,7 +25,7 @@ export default function(el, binding) {
     }
   } 
   else {
-    console.log("清除");
+
     if (curImg) {
       curImg.remove()
     }
