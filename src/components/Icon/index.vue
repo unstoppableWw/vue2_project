@@ -20,6 +20,7 @@ const classMap = {
   error:"icon-cuowu",
   arrowdown:"icon-xiangxiajiantou",
   arrowup:"icon-xiangshangjiantou",
+  bilibili:"icon-icon_bilibili-circle"
 }
 export default {
   props:{
@@ -37,7 +38,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '//at.alicdn.com/t/c/font_4363356_0p9h3r9xd3w.css';
+@import '//at.alicdn.com/t/c/font_4363356_josfcyfx4q.css';
 .iconfont {
   color: inherit;
   font-size: inherit;

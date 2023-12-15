@@ -44,6 +44,17 @@
         <img src="/img/wechat.jpg" alt="">
       </div> -->
     </li>
+    <li>
+      <a href="mailto:jinweiz@m.scnu.edu.cn">
+        <div class="icon">
+          <Icon type="bilibili"/>
+        </div>
+        <span>只会修电脑丶</span>
+      </a>
+      <!-- <div class="pop">
+        <img src="/img/wechat.jpg" alt="">
+      </div> -->
+    </li>
   </ul>
 </template>
 
