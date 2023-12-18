@@ -28,14 +28,17 @@ export default {
   created(){
     this.$bus.$on("mainScroll",this.handleScroll);
   },
+  destroyed(){
+    this.$bus.$off("mainScroll",this.handleScroll);
+  },
   computed:{
     hasMore(){
       return this.data.rows.length < this.data.total;
     }
   },
   methods: {
-     handleScroll(dom){
-      if(this.isLoading) return
+     handleScroll(dom ){
+      if(this.isLoading || !dom) return
        const  range =100;
        const dec = Math.abs(dom.scrollTop + dom.clientHeight - dom.scrollHeight);
        if(dec<=range ){
