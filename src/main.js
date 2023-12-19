@@ -6,6 +6,8 @@ import router from "@/router";
 import showMessage from "./utils/showMessage";
 import "./mock";
 import "./eventBus"
+import store from "./store";
+store.dispatch("setting/fetchSetting");
 Vue.prototype.$showMessage = showMessage;
 Vue.use(VueRouter);
 
@@ -17,6 +19,6 @@ Vue.directive("lazy", vLazy);
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount("#app");
-
