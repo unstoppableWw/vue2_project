@@ -45,7 +45,7 @@
       </div> -->
     </li>
     <li>
-      <a href="mailto:jinweiz@m.scnu.edu.cn">
+      <a href="https://space.bilibili.com/101216970?spm_id_from=333.1007.0.0">
         <div class="icon">
           <Icon type="bilibili"/>
         </div>
