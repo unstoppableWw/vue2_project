@@ -1,10 +1,5 @@
-import Home from "@/Views/Home";
-import About from "@/Views/About";
-import Blog from "@/Views/Blog";
-import Project from "@/Views/Project";
-import Message from "@/Views/Message";
-import BlogDetail from "@/Views/Blog/Detail";
 
+import NotFound from "@/Views/NotFound.vue";
 import VueRouter from "vue-router";
 import { titleController } from "@/utils";
 
@@ -15,7 +10,7 @@ const router = new VueRouter({
     {
       name: "Home",
       path: "/",
-      component: Home,
+      component: () => import(/* webpackChunkName: "home" */ "@/Views/Home"),
       meta: {
         title: "首页",
       },
@@ -23,7 +18,7 @@ const router = new VueRouter({
     {
       name: "About",
       path: "/about",
-      component: About,
+      component: () => import(/* webpackChunkName: "about" */ "@/Views/About"),
       meta: {
         title: "关于我",
       },
@@ -31,7 +26,7 @@ const router = new VueRouter({
     {
       name: "Blog",
       path: "/article",
-      component: Blog,
+      component: () => import(/* webpackChunkName: "blog" */ "@/Views/Blog"),
       meta: {
         title: "文章",
       },
@@ -39,7 +34,7 @@ const router = new VueRouter({
     {
       name: "CategoryBlog",
       path: "/article/cate/:categoryId",
-      component: Blog,
+      component: () => import(/* webpackChunkName: "blog" */ "@/Views/Blog"),
       meta: {
         title: "文章",
       },
@@ -47,7 +42,8 @@ const router = new VueRouter({
     {
       name: "BlogDetail",
       path: "/article/:id",
-      component: BlogDetail,
+      component: () =>
+        import(/* webpackChunkName: "blogdetail" */ "@/Views/Blog/Detail"),
       meta: {
         title: "文章详情",
       },
@@ -55,7 +51,8 @@ const router = new VueRouter({
     {
       name: "Project",
       path: "/project",
-      component: Project,
+      component: () =>
+        import(/* webpackChunkName: "project" */ "@/Views/Project"),
       meta: {
         title: "项目&效果",
       },
@@ -63,10 +60,16 @@ const router = new VueRouter({
     {
       name: "Message",
       path: "/message",
-      component: Message,
+      component: () =>
+        import(/* webpackChunkName: "message" */ "@/Views/Message"),
       meta: {
         title: "留言板",
       },
+    },
+    {
+      name: "NotFound",
+      path: "*",
+      component: NotFound,
     },
   ],
   mode: "history",
